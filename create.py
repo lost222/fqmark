@@ -22,7 +22,7 @@ def out_benchfile(threadNum, dir):
         meanfilesize = "set $meanfilesize=16k"
         nthreads = "set $nthreads = 1"
         iosize = "set $iosize = 5m"
-        setList = [dir, nfiles,meandirwidth,meanfilesize, nthreads, iosize]
+        setList = [dir, nfiles,meandirwidth, meanfilesize, nthreads, iosize]
         setList = [i+"\n" for i in setList]
         file.writelines(setList)
         file.write("set mode quit firstdone")
@@ -76,10 +76,19 @@ def out_benchfile(threadNum, dir):
         file.write("run ")
 
 
-for i in range(10, 40, 5):
+data = open("data.txt", "w")
+
+for i in range(10, 80, 5):
     out_benchfile(i, "/home")
     fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
     file = open("log"+str(i)+".log", "w")
     exec_cmd(fileBenchCmd, file)
     file.close()
+
+    data.write("when i=" + str(i) + "\n")
+    dataCCmd = "tail -2" + "log"+str(i)+".log"
+    exec_cmd(dataCCmd, data)
+
     print("log done", i)
+
+data.close()
