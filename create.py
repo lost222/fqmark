@@ -76,7 +76,7 @@ def out_benchfile(threadNum, dir):
         file.write("run ")
 
 
-for i in range(10, 40, 50):
+for i in range(10, 40, 5):
     out_benchfile(i, "/home")
     fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
     file = open("log"+str(i)+".log", "w")
