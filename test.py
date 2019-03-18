@@ -60,8 +60,8 @@ def out_benchfile(threadNum, dir, runtime):
         file.write("run " + str(runtime))
 
 
-for i in range(5, 20, 5):
-    out_benchfile(i, "./", 60)
+for i in range(5, 55, 5):
+    out_benchfile(i, "/home", 60)
     fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
     file = open("log"+str(i)+".log", "w")
     exec_cmd(fileBenchCmd, file)
