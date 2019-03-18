@@ -25,7 +25,7 @@ def out_benchfile(threadNum, dir, runtime):
 
         # define file name = largefile1, path =$dir, size =$filesize, prealloc, reuse
         filesetdefine0 = "define file name="
-        filesetdefine2 = ", path =$dir, size =$filesize, prealloc, reuse "
+        filesetdefine2 = ", path =$dir, size =$filesize, reuse "
         for i in range(threadNum):
             filesetname = "largefile" + str(i)
             file.write(filesetdefine0+filesetname+filesetdefine2+"\n")
