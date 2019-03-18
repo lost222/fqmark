@@ -15,7 +15,7 @@ def out_benchfile(threadNum, dir, runtime):
         # set $nthreads = 1
         # set $iosize = 1m
         dir = "set $dir="+dir
-        filesize = "set $filesize = 100m"
+        filesize = "set $filesize = 10m"
         nthreads = "set $nthreads = 1"
         iosize = "set $iosize = 1m"
         setList = [dir, filesize, nthreads, iosize]
