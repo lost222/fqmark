@@ -17,7 +17,7 @@ def out_benchfile(threadNum, dir, runtime):
         dir = "set $dir="+dir
         filesize = "set $filesize = 10m"
         nthreads = "set $nthreads = 1"
-        iosize = "set $iosize = 1m"
+        iosize = "set $iosize = 5m"
         setList = [dir, filesize, nthreads, iosize]
         setList = [i+"\n" for i in setList]
         file.writelines(setList)
