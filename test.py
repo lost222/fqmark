@@ -25,45 +25,49 @@ def out_benchfile(threadNum, dir, runtime):
 
         # define file name = largefile1, path =$dir, size =$filesize, prealloc, reuse
         filesetdefine0 = "define file name="
-        filesetdefine2 = ", path =$dir, size =$filesize, reuse "
+        filesetdefine2 = ", path =$dir, size =$filesize, prealloc, reuse "
         for i in range(threadNum):
             filesetname = "largefile" + str(i)
             file.write(filesetdefine0+filesetname+filesetdefine2+"\n")
         file.write("\n")
 
         # define process name=seqwrite, instances=1
-        processDefine = "define process name=seqwrite,instances=1"
-        file.write(processDefine+"\n")
-        file.write("{"+"\n")
-
-        #   thread name=seqwrite1,memsize=10m,instances=$nthreads
-        #   {
-        #     flowop write name=seqwrite1,filename=largefile1,iosize=$iosize
-        #   }
-        #   thread name=seqwrite2,memsize=10m,instances=$nthreads
-        #   {
-        #     flowop write name=seqwrite2,filename=largefile2,iosize=$iosize
-        #   }
-        treadDefine0 = "thread name="
-        treadDefine2 = ",memsize=10m,instances=$nthreads"
-        flowopDefine0 = "flowop write name="
-        flowopDefine2 = ",filename="
-        filesetdefine3 = ",iosize=$iosize"
-        for i in range(threadNum):
-            threadName = "write" + str(i)
-            filesetName = "largefile" + str(i)
-            file.write(treadDefine0+threadName+treadDefine2+"\n")
+        for process in range(int(threadNum / 10)):
+            processName = "Wpro" + str(process)
+            processDefine = "define process name="+processName+",instances=1"
+            file.write(processDefine+"\n")
             file.write("{"+"\n")
-            file.write("  "+flowopDefine0+threadName+flowopDefine2+filesetName+filesetdefine3+"\n")
-            file.write("}"+"\n")
-        file.writelines("}"+"\n")
+
+            #   thread name=seqwrite1,memsize=10m,instances=$nthreads
+            #   {
+            #     flowop write name=seqwrite1,filename=largefile1,iosize=$iosize
+            #   }
+            #   thread name=seqwrite2,memsize=10m,instances=$nthreads
+            #   {
+            #     flowop write name=seqwrite2,filename=largefile2,iosize=$iosize
+            #   }
+            treadDefine0 = "thread name="
+            treadDefine2 = ",memsize=10m,instances=$nthreads"
+            flowopDefine0 = "flowop write name="
+            flowopDefine2 = ",filename="
+            filesetdefine3 = ",iosize=$iosize"
+            for i in range(10):
+                threadName = "write" + str(process*10 + i)
+                filesetName = "largefile" + str(process*10 + i)
+                file.write(treadDefine0+threadName+treadDefine2+"\n")
+                file.write("{"+"\n")
+                file.write("  "+flowopDefine0+threadName+flowopDefine2+filesetName+filesetdefine3+"\n")
+                file.write("}"+"\n")
+            file.writelines("}"+"\n")
+            file.write("\n")
         file.write("run " + str(runtime))
 
 
-for i in range(5, 55, 5):
+for i in range(10, 30, 10):
     out_benchfile(i, "/home", 60)
     fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
     file = open("log"+str(i)+".log", "w")
     exec_cmd(fileBenchCmd, file)
     file.close()
     print("log %d done", i)
+
