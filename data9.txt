@@ -1,0 +1,24 @@
+11.194: IO Summary: 150000 ops 16634.461 ops/s 0/5545 rd/wr  86.6mb/s 0.042ms/op
+11.194: Shutting down processes
+10.041: IO Summary: 150000 ops 18730.067 ops/s 0/6243 rd/wr  97.6mb/s 0.077ms/op
+10.041: Shutting down processes
+12.151: IO Summary: 150000 ops 14821.408 ops/s 0/4940 rd/wr  77.2mb/s 0.178ms/op
+12.151: Shutting down processes
+9.170: IO Summary: 150000 ops 21364.271 ops/s 0/7121 rd/wr 111.3mb/s 0.259ms/op
+9.170: Shutting down processes
+10.921: IO Summary: 150000 ops 21340.748 ops/s 0/7114 rd/wr 111.1mb/s 0.309ms/op
+10.921: Shutting down processes
+8.407: IO Summary: 150000 ops 24964.825 ops/s 0/8322 rd/wr 130.0mb/s 0.472ms/op
+8.407: Shutting down processes
+10.170: IO Summary: 150000 ops 18585.907 ops/s 0/6195 rd/wr  96.8mb/s 1.064ms/op
+10.170: Shutting down processes
+10.028: IO Summary: 150000 ops 18468.228 ops/s 0/6156 rd/wr  96.2mb/s 1.363ms/op
+10.028: Shutting down processes
+9.278: IO Summary: 150000 ops 20329.429 ops/s 0/6776 rd/wr 105.9mb/s 1.731ms/op
+9.278: Shutting down processes
+8.972: IO Summary: 150000 ops 21319.495 ops/s 0/7106 rd/wr 111.0mb/s 1.581ms/op
+8.972: Shutting down processes
+8.475: IO Summary: 150000 ops 23022.402 ops/s 0/7674 rd/wr 119.9mb/s 1.862ms/op
+8.475: Shutting down processes
+11.498: IO Summary: 150000 ops 18636.413 ops/s 0/6212 rd/wr  97.1mb/s 2.695ms/op
+11.498: Shutting down processes

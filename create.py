@@ -76,19 +76,20 @@ def out_benchfile(threadNum, dir):
         file.write("run ")
 
 
-data = open("data.txt", "w")
-xx = [1, 2, 4, 8] + [i for i in range(10,90,10)]
+for num in range(10):
+    data = open("data"+str(num)+".txt", "w")
+    xx = [1, 2, 4, 8] + [i for i in range(10,90,10)]
 
-for i in xx:
-    out_benchfile(i, "/home/test")
-    fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
-    file = open("log"+str(i)+".log", "w")
-    exec_cmd(fileBenchCmd, file)
-    file.close()
+    for i in xx:
+        out_benchfile(i, "/home/test")
+        fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
+        file = open("log"+str(i)+".log", "w")
+        exec_cmd(fileBenchCmd, file)
+        file.close()
 
-    dataCCmd = "tail -2 " + "log"+str(i)+".log"
-    exec_cmd(dataCCmd, data)
+        dataCCmd = "tail -2 " + "log"+str(i)+".log"
+        exec_cmd(dataCCmd, data)
 
-    print("log done", i)
+        print("log done", num, "i=",i)
 
-data.close()
+    data.close()
