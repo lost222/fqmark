@@ -25,7 +25,7 @@ def out_benchfile(threadNum, dir):
         setList = [dir, nfiles,meandirwidth, meanfilesize, nthreads, iosize]
         setList = [i+"\n" for i in setList]
         file.writelines(setList)
-        file.write("set mode quit firstdone")
+        file.write("set mode quit alldone")
         file.write("\n")
 
         # define fileset name=bigfileset,path=$dir,size=$meanfilesize,entries=$nfiles,dirwidth=$meandirwidth
@@ -52,7 +52,7 @@ def out_benchfile(threadNum, dir):
         flowCreate2 = ",filesetname=bigfileset,fd=1"
 
         flowopDefine0 = "flowop writewholefile name="
-        flowopDefine2 = ",fd=1,iosize=$iosize"
+        flowopDefine2 = ",fd=1,dsync=true,iosize=$iosize"
 
         flowopClose0 = "flowop closefile name="
         flowopClose2 = ",fd=1"
@@ -78,15 +78,15 @@ def out_benchfile(threadNum, dir):
 
 data = open("data.txt", "w")
 
-for i in range(10, 80, 5):
-    out_benchfile(i, "/home")
+for i in range(10, 100, 10):
+    out_benchfile(i, "/home/test")
     fileBenchCmd = "filebench -f ./" + "testmode"+str(i)+".f"
     file = open("log"+str(i)+".log", "w")
     exec_cmd(fileBenchCmd, file)
     file.close()
 
     data.write("when i=" + str(i) + "\n")
-    dataCCmd = "tail -2" + "log"+str(i)+".log"
+    dataCCmd = "tail -2 " + "log"+str(i)+".log"
     exec_cmd(dataCCmd, data)
 
     print("log done", i)
